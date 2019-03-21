@@ -10,7 +10,7 @@ class App extends React.Component{
             <View>
                 <Text> Nattarin</Text>
             </View>
-        )
+        );
     }
 }
 
