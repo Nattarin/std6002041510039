@@ -1,15 +1,22 @@
-// import Library
-import React, { component} from 'react';
+//import library
+import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 
-// creat component
-class Header extends component {
+//create component
+class Header extends Component {
     render() {
         return (
-            <View>
-                <Text>A{this.props.title}</Text>
+            <View style={styles.header}>
+                 <Text>{this.props.title}</Text>
             </View>
-        );
+        )
+    }
+}
+
+//style
+const styles = {
+    header:{
+        padding: 5
     }
 }
 
