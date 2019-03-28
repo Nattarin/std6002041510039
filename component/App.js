@@ -11,8 +11,7 @@ class App extends React.Component{
             //component about react native
             <View>
                 <Header title="Albums" />
-                <Text> May</Text>
-                <Text> 6002041510039</Text>
+                <Text> Photo By Nattarin</Text>
                 <Card/>
             </View>
         );
