@@ -16,8 +16,12 @@ class Header extends Component {
 //style
 const styles = {
     header:{
-        padding: 5
-    }
+        padding: 10,
+        alignItems: "center"
+    },
+text: {
+        fontSize: 50
+    }   
 }
 
 //export
