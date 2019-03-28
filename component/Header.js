@@ -7,9 +7,11 @@ class Header extends component {
     render() {
         return (
             <View>
-                <Text>Albums</Text>
+                <Text>A{this.props.title}</Text>
             </View>
-        )
+        );
     }
 }
+
 //export
+export default Header;
