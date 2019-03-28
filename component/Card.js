@@ -18,6 +18,5 @@ class Card extends Component {
     }
 }
 
-
 //export
 export default Card;
