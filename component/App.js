@@ -12,7 +12,7 @@ class App extends React.Component{
             <View>
                 <Header title="Albums" />
                 <Text> May</Text>
-                <Text> 6002041510039s</Text>
+                <Text> 6002041510039</Text>
                 <Card/>
             </View>
         );
