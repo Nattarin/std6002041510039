@@ -2,7 +2,7 @@
 import React from 'react';
 import { View , Text } from 'react-native';
 import Header from './Header';
-import Card from './Card';
+//import Card from './Card';
 import Login from './Login';
 
 //write component
