@@ -18,11 +18,11 @@ const styles = {
     header: {
         padding:10,
         alignItems:'center',
-        backgroundColor: '#330099'
+        backgroundColor: '#990000'
     },
     text: {
         fontSize: 40,
-        color:'#CCFFFF'
+        color:'#ffccff'
     }  
 };
 
