@@ -12,7 +12,6 @@ class Header extends Component {
         );
     }
 }
-
 //style
 const styles = {
     header: {
