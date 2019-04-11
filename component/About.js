@@ -21,7 +21,7 @@ class About extends Component {
         const config = {
             headers: {
                 accept: '*/*',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1Yzg0ZjJkNWU1NjhiMTdjNzQ0N2EzNzMiLCJpYXQiOjE1NTQ5NjYzNTB9.3KoJdComhCGqOAQNzJZVl6CHfnP-8iUSF2TdGehqPDg'
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI1Y2FhZTQ3YzBhYTc3ZjQwYzQyZjAzN2QiLCJpYXQiOjE1NTQ5NjkyMjd9.2xZ2fT1Y-cAIA3IR1SUTJI2Yieme5TB1yo-pkHu8Z7U'
             }
         }
 
