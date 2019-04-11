@@ -16,10 +16,10 @@ public class MainActivity extends ReactActivity {
         return "std6002041510039";
     }
     @Override
-protected ReactActivityDelegate createReactActivityDelegate() {
- return new ReactActivityDelegate(this, getMainComponentName()) {
-@Override
-protected ReactRootView createRootView() {
+      protected ReactActivityDelegate createReactActivityDelegate() {
+      return new ReactActivityDelegate(this, getMainComponentName()) {
+  @Override
+      protected ReactRootView createRootView() {
       return new RNGestureHandlerEnabledRootView(MainActivity.this);
      }
    };

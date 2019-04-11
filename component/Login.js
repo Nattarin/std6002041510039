@@ -1,129 +1,68 @@
-import React from 'react';
-import { View, Text, TextInput, Button, TouchableOpacity } from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
+// import library
+import React, { Component } from 'react';
+import { View, Text, TextInput, Button } from 'react-native';
 import axios from 'axios';
+import AsyncStorage from '@react-native-community/async-storage';
 
-export default class Login extends React.Component {
+// write component
+class Login extends Component {
     static navigationOptions = {
-        title: "Login",
-        headerStyle: {
-            backgroundColor: "#F39C12",
-        },
-        headerTintColor: "#FFF",
-    };
-    
+        title: 'Login'
+    }
     constructor() {
-        super();
-
+        super()
         this.state = {
-            email: "",
-            password: "" 
-        };
-    }
-
-    async componentDidMount() {
-        try {
-            if (await AsyncStorage.getItem("login_token") !== null) {
-                this.props.navigation.navigate("Me");
-            }
-        } catch (error) {
-            console.error(error);
+            email: '',
+            password: ''
         }
+        // this.onChangeEmail = this.onChangeEmail.bind(this)
     }
-
-    goLogin() {
-        axios.post("http://128.199.240.120:9999/api/auth/login", {
-            email: this.state.email,
-            password: this.state.password
-        }).then(async function (response) {
-            // alert("Logined !");
-
-            console.log(response.data.data.token);
-            try {
-                await AsyncStorage.setItem("login_token", response.data.data.token);
-            } catch (error) {
-                alert("Save token error !");
-
-                return;
-            }
-
-            this.props.navigation.navigate("Me");
-        }.bind(this))
-        .catch(function (error) {
-            alert("Login fail !");
-
-            console.log(error);
-        });
+    componentDidMount() {
+        const {navigate} = this.props.navigation;
+        return navigate('Profile')
     }
-
+    onChangeEmail(e) {
+        console.log('onChangeEmail', e)
+        this.setState({ email: e}) 
+    }
+    onChangePassword(e) {
+        this.setState({ password: e})
+    }
+    async onPress() {
+        console.log(this.state)
+        const url = 'http://128.199.240.120:9999/api/auth/login'
+        axios.post(url, this.state)
+            .then(async response => {
+                console.log('token ', response.data.data.token)
+                await AsyncStorage.setItem('@storage_Token', response.data.data.token)
+            })
+    }
     render() {
+        const {navigate} = this.props.navigation;
+        return navigate('Profile')
         return (
-            <View style={{ paddingTop: 20 }}>
-                <Text style={{ textAlign: "center", fontSize: 28, color: "#F39C12" }}>Login Form</Text>
-                <View style={{ 
-                    margin: 20, 
-                    /*
-                    borderWidth: 1,
-                    borderColor: "#CCC",
-                    backgroundColor: "#FFF",
-                    */
-                    backgroundColor: "#FFF",
-                    borderRadius: 6,
-                    elevation: 4
-                }}>
-                    <TextInput
-                        placeholder="Email"
-                        onChangeText={(text) => this.setState({ email: text })}
-                        value={this.state.email}
-                        style={{
-                            fontSize: 18,
-                            marginLeft: 6
-                        }}
-                    />
-                    
-                    <View style={{
-                        backgroundColor: "#F0F3F4",
-                        height: 1
-                    }}></View>
-
-                    <TextInput
-                        placeholder="Password"
-                        onChangeText={(text) => this.setState({ password: text })}
-                        value={this.state.password}
-                        style={{
-                            fontSize: 18,
-                            marginLeft: 6
-                        }}
-                        secureTextEntry
-                    />
-
-                    {/*<Button 
-                        title="Login" 
-                        onPress={this.goLogin.bind(this)} 
-                        style={{
-                            borderRadius: 0,
-                            elevation: 0
-                        }}
-                    />*/}
-
-                    <TouchableOpacity onPress={this.goLogin.bind(this)}>
-                        <View style={{
-                            borderColor: "#CCC",
-                            backgroundColor: "#F39C12",
-                            padding: 10,
-                            borderBottomLeftRadius: 6,
-                            borderBottomRightRadius: 6
-                        }}>
-                            <Text style={{ 
-                                textAlign: "center", 
-                                fontSize: 18,
-                                color: "#FFF",
-                                fontWeight: "bold"
-                            }}>Login</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
+            <View>
+                <TextInput
+                    style={{ height: 40, fontWeight: 'bold', fontSize: 20 }}
+                    placeholder="Email"
+                    value={this.state.email}
+                    onChangeText={this.onChangeEmail.bind(this)}
+                />
+                <TextInput
+                    secureTextEntry
+                    style={{ height: 40, fontWeight: 'bold', fontSize: 20 }}
+                    placeholder="Password"
+                    value={this.state.password}
+                    onChangeText={this.onChangePassword.bind(this)}
+                />
+                <Button  
+                    title="Login"
+                    onPress={this.onPress.bind(this)}
+                />
             </View>
         );
     }
 }
+
+// export
+export default Login;
