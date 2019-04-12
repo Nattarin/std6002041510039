@@ -7,8 +7,8 @@ import {createStackNavigator, createAppContainer} from 'react-navigation';
 // import App from './App';
 import {name as appName} from './app.json';
 // import App from './components/App';
-import AboutScreen from './components/About';
-import LoginScreen from './components/Login';
+import AboutScreen from './component/About';
+import LoginScreen from './component/Login';
 
 const MainNavigator = createStackNavigator({
     Login: {screen: LoginScreen},

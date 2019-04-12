@@ -1,13 +1,17 @@
 // import library
 import React, { Component } from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
+import { View, Text, TextInput, Button,Alert } from 'react-native';
 import axios from 'axios';
 import AsyncStorage from '@react-native-community/async-storage';
 
 // write component
 class Login extends Component {
     static navigationOptions = {
-        title: 'Login'
+        title: 'Login',
+        headerStyle: {
+            backgroundColor: "#990000",
+        },
+        headerTintColor: "#FFF",
     }
     constructor() {
         super()
@@ -38,6 +42,10 @@ class Login extends Component {
             .then(async response => {
                 // console.log('token ', response.data.data.token)
                 await AsyncStorage.setItem('@storage_Token', response.data.data.token)
+                const {navigate} = this.props.navigation;
+                return navigate('Profile')
+            }).catch(error=>{
+                alert('Email or Password Incorrect');
             })
 
         
@@ -47,28 +55,43 @@ class Login extends Component {
         // const {navigate} = this.props.navigation;
         // return navigate('Profile')
         return (
-            <View>
+            <View style={{marginTop:30}}>
                 <TextInput
-                    style={{ height: 40, fontWeight: 'bold', fontSize: 20 }}
+                    style={styles.textstyle}
                     placeholder="Email"
                     value={this.state.email}
                     onChangeText={this.onChangeEmail.bind(this)}
                 />
                 <TextInput
                     secureTextEntry
-                    style={{ height: 40, fontWeight: 'bold', fontSize: 20 }}
+                    style={styles.textstyle}
                     placeholder="Password"
                     value={this.state.password}
                     onChangeText={this.onChangePassword.bind(this)}
                 />
-                <Button  
-                    title="Login"
-                    onPress={this.onPress.bind(this)}
-                />
+                <View style={{width:350,marginLeft:30,marginTop:10}}>
+                    <Button  
+                        title="Login"
+                        onPress={this.onPress.bind(this)}
+                    />
+                </View>
             </View>
         );
     }
 }
-
+const styles = {
+    textstyle:{
+        fontSize:22,
+        height:50,
+        width:350,
+        backgroundColor:'#e0dede',
+        fontWeight:'bold',
+        borderRadius:7,
+        marginLeft:30,
+        borderWidth: 1.5,     
+        borderColor: '#b5b5b5',
+        marginTop:7
+    },
+}; 
 // export
 export default Login;
